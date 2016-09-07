@@ -2,6 +2,7 @@
 
 - water
 - propane
+- get valuables/tools from roddy
 - clean eavestroughs
 - connect rainwater
 - limb up path
@@ -16,6 +17,7 @@
 - store solar light
 - empty chainsaws
 - empty generator
+- valuables offsite (tools to roddy)
 - collect compost carbon
 - wash clothes & linens at the discount store
 - pack & store food

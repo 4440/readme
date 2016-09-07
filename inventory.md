@@ -1,6 +1,12 @@
 
 # inventory
 
+See a more complete inventory here:
+
+https://docs.google.com/spreadsheets/d/17NvbRToCmRwNfNNyYtSjTC6rubnJPexp5e_ZG1DiBgg/edit?usp=sharing
+
+...we should consolidate these and figure out a sharing mechanism (preferably plaintext or offline syncing).
+
 ## loft
 
 blanket - x6

@@ -17,7 +17,7 @@
 - store solar light
 - empty chainsaws
 - empty generator
-- valuables offsite (tools to roddy)
+- move large black prybar to toilet
 - collect compost carbon
 - wash clothes & linens at the discount store
 - pack & store food

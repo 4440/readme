@@ -1,19 +1,32 @@
 # readme
+
 A how-to doc for the land
 
+This document will contain pointers to all the various documents we've accumulated over the years. Some are private, some are fully public. We're still figuring out how to organize ourselves in our digital world. For now, they're mostly organized chronologically. Sorry.
 
-# composter
+## Tools
 
-## carbon
+- Google Docs (can we please stop using this?)
+- Telegram Friends: https://t.me/joinchat/AByUMT9UzNDPXTbngurx9g
+- Keybase Owners: https://keybase.io/team/4440
+- Keybase Friends: https://keybase.io/team/4440.friends
 
-Pine needles make great carbon. There is a collection under some trees on the far side of the meadow. Six full, level wheel barrows fill the carbon box.
+## 2013
 
-It's okay for the compost to get wet (good, in fact) but the carbon needs to stay dry.
+- Inventory: https://docs.google.com/document/d/1un3TnEHNnB8RMMeChM08HrntVDay2ntnqaMiKJAKkHE/edit
 
-## poopin'
+## 2016
 
-Splash some water on the inside of a 5 galon pale and line it with newspaper. Add 3 scoops of peat moss to the bottom and it's ready for poops. When it's about 2/3 or 3/4 full, seal the lid and put it under the toilet platform. Once there are two full buckets, dump them in the composter and give them a rinse with well water. Cover thoroughly with carbon. There should be no smell and no flies.
+- Howto Setup/Teardown: https://github.com/4440/readme/blob/master/setup-teardown.md
+- Howto Compost: https://github.com/4440/readme/blob/master/composter.md
 
-## other organics
+- Projects List: https://github.com/4440/readme/blob/master/projects.md
+- Well water testing: https://github.com/4440/readme/blob/master/project-well.md
+- Shopping list: https://github.com/4440/readme/blob/master/shopping.md
+- Spending list: https://github.com/4440/readme/blob/master/2016-steven-spending.md
 
-It's easiest to add the food waste when you dump the poop buckets, but timings don't always line up. Cover food waste in plenty of carbon. Smells are bad, flies are bad.
+## 2019
+
+- Door sign: https://docs.google.com/document/d/1snswB4xda_0knPL41ke2ecMLWGZOEQK2JO3NZIBmmhM/edit?usp=sharing
+- Cabin Security: https://docs.google.com/document/d/1FNKk4eIXeQ2y-diHO_WhCuTT5a1f9oeFhwppg29PcLQ/edit?usp=sharing (will require permission)
+- Chronology: https://docs.google.com/document/d/1JzZR_3Tt6q0rqYXa9MNvR4HWNjpY8mLSJmHdTPgV-7Q/edit

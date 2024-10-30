@@ -6,9 +6,6 @@ on:
 jobs:
   check-properties:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./tax-sales
     steps:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
@@ -19,4 +16,5 @@ jobs:
       - name: Check out the repository to the runner
         uses: actions/checkout@v4
       - name: Check properties
+        working-directory: ./tax-sales
         run: ./bot.rb

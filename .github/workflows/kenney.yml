@@ -1,0 +1,17 @@
+on:
+  schedule:
+    - cron: "0 5 * * *"
+
+jobs:
+  check-properties:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./tax-sales
+    steps:
+      - name: Setup Ruby
+        uses: ruby/setup-ruby
+      - name: Check out the repository to the runner
+        uses: actions/checkout@v4
+      - name: Check properties
+        run: ./bot.rb

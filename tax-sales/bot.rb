@@ -4,6 +4,7 @@
 
 require 'net/http'
 require 'nokogiri'
+require 'fileutils'
 
 class Property
   attr_accessor :assessment_num, :href
@@ -34,6 +35,7 @@ class Property
   end
 end
 
+puts "Getting listings..."
 uri = URI(Property.base_url)
 uri.freeze
 html = Net::HTTP.get(uri)
@@ -49,5 +51,19 @@ ps = tags
 # TODO: add PIDs to Properties
 # TODO: get kenney/special PID from secrets
 
-ps.each {|p| puts p }
-puts "Contains 00453803 (Kenney lot)? - #{ps.any?(&:kenney?)}"
+FileUtils.rm_f("latest.tmp")
+File.open("latest.tmp", 'w') do |f|
+  puts "Writing listings to temporary file..."
+  ps.each {|p| f.puts p }
+  f.puts "Contains 00453803 (Kenney lot)? - #{ps.any?(&:kenney?)}"
+end
+
+old_listings = File.read("listings.txt") rescue ""
+if (old_listings != File.read("latest.tmp"))
+  puts "New listings! Replacing 'listings.txt' and creating dated record..."
+  FileUtils.cp("latest.tmp", "#{Time.now.strftime("%Y-%m-%d")}_listings.txt")
+  FileUtils.cp("latest.tmp", "listings.txt")
+  # TODO: commit to git repo (GH action)
+  # TODO: send an email
+end
+FileUtils.rm_f("latest.tmp")

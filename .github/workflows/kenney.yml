@@ -3,13 +3,13 @@ on:
     - cron: "0 5 * * *"
   workflow_dispatch:
 
+defaults:
+  run:
+    working-directory: .
+
 jobs:
   check-properties:
     runs-on: ubuntu-latest
-  defaults:
-    run:
-      working-directory: .
-
     steps:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1

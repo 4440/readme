@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
       - name: Check out the repository to the runner
         uses: actions/checkout@v4
       - name: Check properties

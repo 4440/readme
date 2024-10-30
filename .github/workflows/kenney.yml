@@ -10,7 +10,7 @@ jobs:
         working-directory: ./tax-sales
     steps:
       - name: Setup Ruby
-        uses: ruby/setup-ruby
+        uses: ruby/setup-ruby@v1
       - name: Check out the repository to the runner
         uses: actions/checkout@v4
       - name: Check properties

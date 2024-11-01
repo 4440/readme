@@ -139,6 +139,7 @@ class ListingsPdf
     uri.freeze
     pdf = fetch(uri)
     File.write(@file, pdf.body)
+    FileUtils.cp(@file, "listings.pdf") # consistent naming for email attachment
   end
 
   def parse

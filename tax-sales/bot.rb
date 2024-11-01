@@ -111,7 +111,7 @@ class ListingsPdf
 
   def initialize(url)
     @url = url
-    @file = "listings.pdf"
+    @file = "#{Time.now.strftime("%Y-%m-%d")}_listings.pdf"
   end
 
   def fetch(uri_str, limit = 10)

@@ -130,8 +130,22 @@ class ListingsPdf
   end
 
   def parse
+    puts "Parsing pdf..."
     reader = PDF::Reader.new(File.expand_path(@file))
     @lines = reader.pages.map {|p| p.text.split(/\n/) }.flatten
+    File.open("zig.txt", 'w') do |f|
+      puts "Assessment No, PID, Price, Redeemable"
+      @lines.each_with_index do |line,i|
+        next if line.include? "Redeemable" # skip the header
+        next if line.strip.length == 0 # skip empty
+        next if line.include? "MOBILE HOME ONLY" # no thx
+        assno = line[0..7]
+        pids = line[77..97]
+        price = line[199..211]
+        redeemable = line[223..225]
+        f.puts "#{assno},#{pids},#{price},#{redeemable}"
+      end
+    end
   end
 end
 
@@ -162,18 +176,21 @@ class Listings
   end
 end
 
-page = SalePage.new
-page.scrape!
+def main
+  page = SalePage.new
+  page.scrape!
 
-pdf = ListingsPdf.new(page.list_pdf)
-pdf.download!
-pdf.parse
+  pdf = ListingsPdf.new(page.list_pdf)
+  pdf.download!
+  pdf.parse
 
-listings = Listings.new(page.properties)
-listings.save_tmp!
-listings.compare_and_swap!
+  listings = Listings.new(page.properties)
+  listings.save_tmp!
+  listings.compare_and_swap!
+end
 
-# TODO: parse PDF and find PIDs
+main()
+
 # TODO: add PIDs to Properties
 # TODO: get kenney/special PID from secrets
 # TODO: git / email stuff in Listings

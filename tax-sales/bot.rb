@@ -1,10 +1,12 @@
 #!/usr/bin/env ruby
 
 # gem install nokogiri
+# gem install pdf-reader
 
 require 'net/http'
-require 'nokogiri'
 require 'fileutils'
+require 'nokogiri'
+require 'pdf/reader'
 
 class Property
   attr_accessor :assessment_num, :href
@@ -60,12 +62,17 @@ class SalePage
   attr_accessor :tags
 
   def SalePage.base_url
+    # not "https://www.halifax.ca/home-property/property-taxes/tax-sale"
+    "https://www.halifax.ca"
+  end
+
+  def SalePage.sale_url
     "https://www.halifax.ca/home-property/property-taxes/tax-sale"
   end
 
   def scrape!
     puts "Getting listings..."
-    uri = URI(SalePage.base_url)
+    uri = URI(SalePage.sale_url)
     uri.freeze
     html = Net::HTTP.get(uri)
     doc = Nokogiri::HTML.parse(html)
@@ -84,6 +91,47 @@ class SalePage
       .delete_if {|p| p.not_schedule_a? }
       .first
       .pdf_url
+  end
+end
+
+class ListingsPdf
+  attr_accessor :lines
+
+  def initialize(url)
+    @url = url
+    @file = "listings.pdf"
+  end
+
+  def fetch(uri_str, limit = 10)
+    if !uri_str.to_s.include? "https"
+      puts "### url '#{uri_str}' is missing a protocol. Adding 'https'..."
+      uri_str = "https:#{uri_str}"
+    end
+    raise ArgumentError, 'too many HTTP redirects' if limit == 0
+    response = Net::HTTP.get_response(URI(uri_str))
+    case response
+    when Net::HTTPSuccess then
+      response
+    when Net::HTTPRedirection then
+      location = response['location']
+      puts "### redirected to #{location}"
+      fetch(location, limit - 1)
+    else
+      response.value
+    end
+  end
+
+  def download!
+    puts "Attempting to download pdf '#{@url}'..."
+    uri = URI(@url)
+    uri.freeze
+    pdf = fetch(uri)
+    File.write(@file, pdf.body)
+  end
+
+  def parse
+    reader = PDF::Reader.new(File.expand_path(@file))
+    @lines = reader.pages.map {|p| p.text.split(/\n/) }.flatten
   end
 end
 
@@ -116,13 +164,15 @@ end
 
 page = SalePage.new
 page.scrape!
-puts page.list_pdf
+
+pdf = ListingsPdf.new(page.list_pdf)
+pdf.download!
+pdf.parse
 
 listings = Listings.new(page.properties)
 listings.save_tmp!
 listings.compare_and_swap!
 
-# TODO: look up PDF in tags
 # TODO: parse PDF and find PIDs
 # TODO: add PIDs to Properties
 # TODO: get kenney/special PID from secrets

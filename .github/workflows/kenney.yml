@@ -21,6 +21,10 @@ jobs:
         working-directory: ./tax-sales
         run: ./bot.rb
 
+      - name: config email
+        run: git config user.email "steven@ffffs.org"
+      - name: config username
+        run: git config user.name "GitHub Actions"
       - name: switching from HTTPS to SSH
         run: git remote set-url origin ${{ secrets.ssh_repo }}
       - name: check for changes

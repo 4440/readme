@@ -183,7 +183,7 @@ class Listings
       puts "New listings! Replacing 'listings.csv' and creating dated record..."
       FileUtils.cp("latest.tmp", "#{Time.now.strftime("%Y-%m-%d")}_listings.csv")
       FileUtils.cp("latest.tmp", "listings.csv")
-      # TODO: commit to git repo (GH action)
+
       # TODO: send an email
     end
     FileUtils.rm_f("latest.tmp")

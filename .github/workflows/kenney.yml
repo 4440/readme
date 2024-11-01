@@ -35,20 +35,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
-
-      # - name: config email
-      #   run: git config user.email "steven@ffffs.org"
-      # - name: config username
-      #   run: git config user.name "GitHub Actions"
-      # - name: switching from HTTPS to SSH
-      #   run: git remote set-url origin ${{ secrets.ssh_repo }}
-      # - name: check for changes
-      #   run: git status
-      # - name: stage changed files
-      #   run: git add .
-      # - name: commit changed files
-      #   run: git commit -m "commit new PIDs and PDFs"
-      # - name: fetch from master
-      #   run: git fetch origin master
-      # - name: push code to master
-      #   run: git push origin HEAD:master

@@ -53,7 +53,7 @@ jobs:
           # Required mail subject:
           subject: "4440: New Listings"
           # Required recipients' addresses:
-          to: steven@deobald.ca,preethi@deobald.ca
+          to: steven@deobald.ca,preethi@deobald.ca,geoff@sinfield.com
           # Required sender full name (address can be skipped):
           from: 4440 Tax Sales Bot
           # Optional plain body:

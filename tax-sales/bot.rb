@@ -179,13 +179,13 @@ class Listings
   end
 
   def compare_and_swap!
+    FileUtils.rm_f("email_sentinel")
     old_listings = File.read("listings.csv") rescue ""
     if (old_listings != File.read("latest.tmp"))
       puts "New listings! Replacing 'listings.csv' and creating dated record..."
       FileUtils.cp("latest.tmp", "#{Time.now.strftime("%Y-%m-%d")}_listings.csv")
       FileUtils.cp("latest.tmp", "listings.csv")
-
-      # TODO: send an email
+      FileUtils.touch("email_sentinel")
     end
     FileUtils.rm_f("latest.tmp")
   end
@@ -205,5 +205,5 @@ end
 
 main()
 
+# TODO: email stuff in Listings
 # TODO: get kenney/special PID from secrets
-# TODO: git / email stuff in Listings

@@ -38,6 +38,7 @@ jobs:
 
       - name: Send mail
         uses: dawidd6/action-send-mail@v3
+        if: ${{ hashFiles('tax-sales/email_sentinel') != '' }}
         with:
           # Required mail server address if not connection_url:
           server_address: smtp.gmail.com

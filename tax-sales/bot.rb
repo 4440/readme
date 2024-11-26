@@ -80,7 +80,7 @@ class SalePage
       .map {|t| PdfLink.new(t[:title], t[:href], t.text) }
       .delete_if {|p| p.not_schedule_a? }
       .first
-      .pdf_url
+      &.pdf_url
   end
 end
 
@@ -108,6 +108,7 @@ end
 
 class ListingsPdf
   attr_accessor :lines
+  attr_accessor :file
 
   def initialize(url)
     @url = url
@@ -195,6 +196,10 @@ def main
   page = SalePage.new
   page.scrape!
 
+  unless page.list_pdf
+    puts "### No Schedule A PDF found. Exiting."
+    exit
+  end
   pdf = ListingsPdf.new(page.list_pdf)
   pdf.download!
 
